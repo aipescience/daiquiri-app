@@ -1,0 +1,7 @@
+application/configs/application.ini
+
+public/daiquiri
+public/captcha
+public/cms
+
+nbproject
