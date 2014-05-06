@@ -13,6 +13,7 @@ $daiquiri_path = realpath(__DIR__ . '/../daiquiri');
 
 $options = array(
     'database' => array(
+        /* configure the 'web' and 'user' database adapters */
         'web' => array(
             'dbname' => 'daiquiri_web',
             'host' => 'localhost',
@@ -25,6 +26,9 @@ $options = array(
             'host' => 'localhost',
             'username' => 'daiquiri_user',
             'password' => 'daiquiri_user',
+            'file' => true,
+            'func' => true,
+            'qqueue' => true
         )
     ),
     'mail' => array(
@@ -34,68 +38,103 @@ $options = array(
         'email' => 'daiquiri@example.com',
         'name' => 'Daiquiri Admin'
     ),
+    'modules' => array(
+        /* active modules for this instance of daiquiri */
+        'query',
+        'contact'
+    ),
     'config' => array(
+        'core' => array(
+            'minify' => array(
+                /* enable minification via yui-compressor */
+                'enabled' => false
+            ),
+            'cms' => array(
+                /* enable wordpress cms */
+                'enabled' => false
+            )
+        ),
         'auth' => array(
             'registration' => true,
             'confirmation' => true,
             'details' => array(
-                'firstname', 'lastname', 'website', 'affiliation', 'country'
+                'firstname', 'lastname', 'website'
             )
         ),
         'query' => array(
+            /* allow queries without a user account */
             'guest' => false,
-            'queue' => array(
-                'type' => 'simple'
+            /* configure query 'direct' or 'qqueue' */
+            'query' => array(
+                'type' => 'direct'
             ),
+            /* configure download */
             'download' => array(
-                'queue' => array(
-                    'type' => 'simple'
-                ),
+                /* configure type 'direct' or 'gearman' */
+                'type' => 'gearman',
                 'adapter' => array(
-                    'enabled' => array('csv')
+                    'enabled' => array('mysql', 'csv', 'votable', 'votableB1', 'votableB2')
                 )
             ),
-            'examples' => array(
-                /* add you example queries here */
-                array(
-                    'name' => 'Select first 20 rows from the foo.bar table',
-                    'query' => 'SELECT * FROM `foo`.`bar` LIMIT 20;'
-                ),
-            )
         ),
-        'contact' => true
+        'data' => array(
+            /* write metadata into the comment fields of the science tables */
+            'writeToDB' => true
+        ),
     ),
-    'auth' => array(
-        'user' => array(
-            array(
-                'username' => 'admin',
-                'password' => 'admin',
-                'email' => 'admin@example.com',
-                'status_id' => 1,
-                'role_id' => 5,
-                'firstname' => 'n/a',
-                'lastname' => 'n/a',
-                'website' => 'n/a',
-                'affiliation' => 'n/a',
-                'country' => 'n/a',
+    'init' => array(
+        'auth' => array(
+            /* add initial users here */
+            'user' => array(
+                array(
+                    'username' => 'admin',
+                    'password' => 'admin',
+                    'email' => 'admin@example.com',
+                    'status' => 'active',
+                    'role' => 'admin',
+                    'firstname' => 'Albert',
+                    'lastname' => 'Admin',
+                    'website' => 'example.com',
+                ),
+                array(
+                    'username' => 'user',
+                    'password' => 'user',
+                    'email' => 'user@example.com',
+                    'status' => 'active',
+                    'role' => 'user',
+                    'firstname' => 'Ulf',
+                    'lastname' => 'User',
+                    'website' => 'example.com',
+                ),
             ),
         ),
-    ),
-    /*
-    'data' => array(
-        'databases' => array(
-            'name' => '', // add the name of your science database here
-            'description' => '',
-            'adapter' => 'user',
-            'publication_role_id' => '1',
-            'publication_select' => '1',
-            'publication_update' => '0',
-            'publication_insert' => '0',
-            'publication_show' => '0',
-            'autofill' => '1',
+        'data' => array(
+            /* add science databases */
+            'databases' => array(
+                array(
+                    'name' => 'RAVEPUB_DR3',                 // add the name the database
+                    'description' => '',          // some description
+                    'publication_role' => 'user', // minimal role which has access
+                    'publication_select' => true,  
+                    'publication_update' => false,
+                    'publication_insert' => false,
+                    'publication_show' => false,
+                    'autofill' => '1'             // automagically add tables and columns
+                )
+            )
+        ),
+        'query' => array(
+            'examples' => array(
+            /* add you example queries here */
+                array(
+                    'name' => 'Select first 20 rows from the foo.bar table',
+                    'query' => 'SELECT * FROM `foo`.`bar` LIMIT 20;',
+                    'description' => '',         // some description
+                    'publication_role' => 'user' // minimal role which can see this example
+                )
+            )
         )
     )
-    */
 );
 
 // create init object
