@@ -40,8 +40,13 @@ $options = array(
     ),
     'modules' => array(
         /* active modules for this instance of daiquiri */
+        'core',
+        'auth',
+        'contact',
+        'data',
+        'meetings' ,
         'query',
-        'contact'
+        'uws'
     ),
     'config' => array(
         'core' => array(
@@ -52,6 +57,10 @@ $options = array(
             'cms' => array(
                 /* enable wordpress cms */
                 'enabled' => false
+            ),
+            'uws' => array(
+                /* enable uws interface */
+                'enabled' => true
             )
         ),
         'auth' => array(
@@ -76,6 +85,26 @@ $options = array(
                     'enabled' => array('mysql', 'csv', 'votable', 'votableB1', 'votableB2')
                 )
             ),
+            'forms' => array(
+                'sql' => array(
+                    'default' => true,
+                    'title' => 'SQL query',
+                    'help' => 'Place your SQL statement directly in the text area below and submit your request using the button.',
+                    'class' => 'Query_Form_SqlQuery',
+                    'view' => $daiquiri_path . '/modules/query/views/scripts/_partials/sql-query.phtml'
+                ),
+                'cone' => array(
+                    'title' => 'Cone Search',
+                    'help' => 'Please specify a coordinate in right ascension (RA) and declination (DEC) and a radius in arcsec.',
+                    'class' => 'Query_Form_ConeQuery',
+                    'table' => 'RAVEPUB_DR3.RAVE_DR1',
+                    'raField' => 'RAdeg',
+                    'decField' => 'DEdeg',
+                    'raDefault' => 0.1,
+                    'decDefault' => 0.2,
+                    'radiusDefault' => 2.1
+                )
+            )
         ),
         'data' => array(
             /* write metadata into the comment fields of the science tables */
@@ -112,14 +141,19 @@ $options = array(
             /* add science databases */
             'databases' => array(
                 array(
-                    'name' => 'RAVEPUB_DR3',                 // add the name the database
+                    'name' => 'RAVEPUB_DR3',      // add the name the database
                     'description' => '',          // some description
                     'publication_role' => 'user', // minimal role which has access
-                    'publication_select' => true,  
-                    'publication_update' => false,
-                    'publication_insert' => false,
-                    'publication_show' => false,
-                    'autofill' => '1'             // automagically add tables and columns
+                    'publication_select' => true, // allow select statements
+                    'publication_show' => true,   // allow show table statements
+                    'autofill' => true            // automagically add tables and columns
+                )
+            ),
+            'functions' => array(
+                array(
+                    'name' => 'angdist',
+                    'description' => '',
+                    'publication_role' => 'user'
                 )
             )
         ),
