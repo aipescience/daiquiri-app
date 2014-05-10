@@ -82,10 +82,13 @@ $options = array(
                 /* configure type 'direct' or 'gearman' */
                 'type' => 'gearman',
                 'adapter' => array(
+                    /* configure download formats */
                     'enabled' => array('mysql', 'csv', 'votable', 'votableB1', 'votableB2')
                 )
             ),
+            /* configure forms for query interface */
             'forms' => array(
+
                 'sql' => array(
                     'default' => true,
                     'title' => 'SQL query',
@@ -140,15 +143,16 @@ $options = array(
         'data' => array(
             /* add science databases */
             'databases' => array(
-                array(
+/*                array(
                     'name' => 'RAVEPUB_DR3',      // add the name the database
                     'description' => '',          // some description
                     'publication_role' => 'user', // minimal role which has access
                     'publication_select' => true, // allow select statements
                     'publication_show' => true,   // allow show table statements
                     'autofill' => true            // automagically add tables and columns
-                )
+                )*/
             ),
+            /* add additional user defined functions */
             'functions' => array(
                 array(
                     'name' => 'angdist',
@@ -159,7 +163,7 @@ $options = array(
         ),
         'query' => array(
             'examples' => array(
-            /* add you example queries here */
+                /* add you example queries here */
                 array(
                     'name' => 'Select first 20 rows from the foo.bar table',
                     'query' => 'SELECT * FROM `foo`.`bar` LIMIT 20;',
