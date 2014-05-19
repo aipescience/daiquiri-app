@@ -46,40 +46,6 @@
                     <ul class="nav">
                         <?php
                         echo $this->internalLink(array(
-                            'text' => 'Page',
-                            'href' => '/index/page',
-                            'prepend' => '<li>',
-                            'append' => '</li>'));
-                        ?>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle"
-                               data-toggle="dropdown"
-                               href="#">
-                                Examples
-                            </a>
-                            <ul class="dropdown-menu">
-                                <?php
-                                $pages = array(
-                                    '/examples/row' => 'Row layout',
-                                    '/examples/table' => 'Tables',
-                                );
-                                foreach ($pages as $href => $text) {
-                                    echo $this->internalLink(array(
-                                        'text' => $text,
-                                        'href' => $href,
-                                        'prepend' => '<li>',
-                                        'append' => '</li>'));
-                                }
-                                ?>
-                            </ul>
-                        </li>
-                        <?php
-                        echo $this->internalLink(array(
-                            'text' => 'Credits',
-                            'href' => '/credits',
-                            'prepend' => '<li>',
-                            'append' => '</li>'));
-                        echo $this->internalLink(array(
                             'text' => 'Query',
                             'href' => '/query',
                             'prepend' => '<li>',
