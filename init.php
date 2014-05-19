@@ -52,7 +52,7 @@ $options = array(
         'core' => array(
             'minify' => array(
                 /* enable minification via yui-compressor */
-                'enabled' => false
+                'enabled' => true
             ),
             'cms' => array(
                 /* enable wordpress cms */

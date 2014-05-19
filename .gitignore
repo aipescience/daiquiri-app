@@ -6,5 +6,6 @@ modules
 public/daiquiri
 public/captcha
 public/cms
+public/min
 
 nbproject
