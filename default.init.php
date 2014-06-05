@@ -58,10 +58,6 @@ $options = array(
                 /* enable wordpress cms */
                 'enabled' => false
             ),
-            'uws' => array(
-                /* enable uws interface */
-                'enabled' => true
-            )
         ),
         'auth' => array(
             'registration' => true,
