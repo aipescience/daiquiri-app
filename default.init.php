@@ -22,18 +22,13 @@ $options = array(
         ),
         'user' => array(
             'dbname' => 'daiquiri_user_%',
-            'additional' => array(), // add your science databases here
             'host' => 'localhost',
             'username' => 'daiquiri_user',
             'password' => 'daiquiri_user',
-            'file' => true,
-            'func' => true,
-            'qqueue' => true
         )
     ),
     'mail' => array(
         /* add the smtp connection to your mailserver here */
-        'type' => 'smtp',
         'host' => 'example.com',
         'email' => 'daiquiri@example.com',
         'name' => 'Daiquiri Admin'
@@ -58,10 +53,15 @@ $options = array(
                 /* enable wordpress cms */
                 'enabled' => false
             ),
+            'log' => array(
+                /* enable or disable logging here */
+                'enabled' => true
+            ),
         ),
         'auth' => array(
-            'registration' => true,
-            'confirmation' => true,
+            'registration' => false,
+            'confirmation' => false,
+            'activation' => false,
             'details' => array(
                 'firstname', 'lastname', 'website'
             )
@@ -76,7 +76,7 @@ $options = array(
             /* configure download */
             'download' => array(
                 /* configure type 'direct' or 'gearman' */
-                'type' => 'gearman',
+                'type' => 'direct',
                 'adapter' => array(
                     /* configure download formats */
                     'enabled' => array('mysql', 'csv', 'votable', 'votableB1', 'votableB2')
@@ -84,7 +84,6 @@ $options = array(
             ),
             /* configure forms for query interface */
             'forms' => array(
-
                 'sql' => array(
                     'default' => true,
                     'title' => 'SQL query',
@@ -124,48 +123,38 @@ $options = array(
                     'lastname' => 'Admin',
                     'website' => 'example.com',
                 ),
-                array(
-                    'username' => 'user',
-                    'password' => 'user',
-                    'email' => 'user@example.com',
-                    'status' => 'active',
-                    'role' => 'user',
-                    'firstname' => 'Ulf',
-                    'lastname' => 'User',
-                    'website' => 'example.com',
-                ),
             ),
         ),
         'data' => array(
             /* add science databases */
             'databases' => array(
-/*                array(
-                    'name' => 'RAVEPUB_DR3',      // add the name the database
-                    'description' => '',          // some description
-                    'publication_role' => 'user', // minimal role which has access
-                    'publication_select' => true, // allow select statements
-                    'publication_show' => true,   // allow show table statements
-                    'autofill' => true            // automagically add tables and columns
-                )*/
+                // array(
+                //     'name' => '',                 // add the name the database
+                //     'description' => '',          // some description
+                //     'publication_role' => 'user', // minimal role which has access
+                //     'publication_select' => true, // allow select statements
+                //     'publication_show' => true,   // allow show table statements
+                //     'autofill' => true            // automagically add tables and columns
+                // )
             ),
             /* add additional user defined functions */
             'functions' => array(
-                array(
-                    'name' => 'angdist',
-                    'description' => '',
-                    'publication_role' => 'user'
-                )
+                // array(
+                //     'name' => '',
+                //     'description' => '',
+                //     'publication_role' => 'user'
+                // )
             )
         ),
         'query' => array(
             'examples' => array(
                 /* add you example queries here */
-                array(
-                    'name' => 'Select first 20 rows from the foo.bar table',
-                    'query' => 'SELECT * FROM `foo`.`bar` LIMIT 20;',
-                    'description' => '',         // some description
-                    'publication_role' => 'user' // minimal role which can see this example
-                )
+                // array(
+                //     'name' => 'Select first 20 rows from the foo.bar table',
+                //     'query' => 'SELECT * FROM `foo`.`bar` LIMIT 20;',
+                //     'description' => '',         // some description
+                //     'publication_role' => 'user' // minimal role which can see this example
+                // )
             )
         )
     )
