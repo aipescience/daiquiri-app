@@ -4,6 +4,9 @@ html, body {
 h1,h2,h3,h4 {
     font-weight: normal;
 }
+h2 {
+    margin-bottom: 20px;
+}
 h6 {
     font-size: 1em;
 }
