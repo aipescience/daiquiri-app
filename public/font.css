@@ -1,4 +1,3 @@
-<?php
 /*
  *  Copyright (c) 2012-2015  Jochen S. Klar <jklar@aip.de>,
  *                           Adrian M. Partl <apartl@aip.de>,
@@ -18,14 +17,25 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-class IndexController extends Zend_Controller_Action {
-
-    public function init() {
-
-    }
-
-    public function indexAction() {
-
-    }
-
+@font-face {
+    font-family: "DroidSans";
+    src: url('daiquiri/font/DroidSans.ttf');
+}
+@font-face {
+    font-family: "DroidSans";
+    src: url('daiquiri/font/DroidSans-Bold.ttf');
+    font-weight: bold;
+}
+@font-face {
+    font-family: "DroidSans-Mono";
+    src: url('daiquiri/font/DroidSansMono.ttf');
+}
+body {
+    font-family: DroidSans, sans;
+}
+.mono, pre {
+    font-family: DroidSans-Mono;
+}
+h1,h2,h3,h4 {
+    font-weight: normal;
 }
